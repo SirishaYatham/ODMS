@@ -1,0 +1,278 @@
+<html>
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            .register-page-container
+            {
+                font-family: "IBM Plex Serif", serif;
+                background-size: cover;
+                width:98%;
+                height:75%;
+                padding:150px 20px 30px 20px;
+                background-image: linear-gradient(45deg, black, transparent);
+               
+            }
+            .register-page-user-container 
+            {
+                margin:-30px 10px 0px 200px;
+                padding:20px 0px 10px 10px;
+                color:white;
+                
+            }
+            .register-page-user-sub-container 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: space-evenly;
+                margin-left:40px;
+                width:700px;
+                padding:20px 20px 20px 20px;
+            }
+            .register-page-user-mail-input 
+            {
+                height:40px;
+                width:300px;
+                font-size: 15px;
+                color:white;
+                padding:2px 2px 2px 9px;
+                background-image:linear-gradient(60deg,#005A9C,black);
+                border:solid white 2px;
+                border-radius:20px;
+                margin-bottom: 10px;
+            }
+            .register-page-user-container h3 
+            {
+                font-size:18px;
+                margin:10px 0px 9px 10px;
+            }
+            .register-page-user-container button 
+            {
+                background-image:linear-gradient(60deg,#005A9C,black);
+                border:solid black 3px;
+                color:white;
+                height:40px;
+                width:100px;
+                margin:-10px 0px 10px 300px;
+                font-size: 17px;
+                cursor: pointer;
+                border-radius: 20px;
+                cursor:pointer;
+            }
+            .register-page-user-container button:hover 
+            {
+                background-image:linear-gradient(60deg,black,transparent);
+                color:black;
+            }
+            .landing-page-logo-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin:-20px 0px 0px 10px;
+                font-size: 19px;
+            }
+            .landing-page-logo-bar h2 
+            {
+                color:white;
+                margin:-90px 0px 10px 20px;
+            }
+            .landing-page-logo 
+            {
+                height:50px;
+                width:50px;
+                border-radius: 20px;
+                margin:-100px 10px 0px 60px;
+            }
+            .register-page-container p 
+            {
+                margin:-90px 0px 10px 0px;
+                color:white;
+                text-align: center;
+                font-size: 17px;
+            }
+            .register-page-container p a 
+            {
+                text-decoration: none;
+                color:black;
+            }
+            .register-page-gender
+            {
+                height:30px;
+                width:100px;
+                text-align: center;
+                background-image:linear-gradient(60deg,#005A9C,black);
+                margin:10px 0px 20px 20px;
+                color:white;
+                border-radius: 10px;
+                -webkit-appearance: none; /* Removes default arrow for WebKit browsers */
+                -moz-appearance: none; /* Removes default arrow for Firefox */
+                 appearance: none; /* Removes default arrow for other browsers */
+            }
+
+            /* Adds a custom arrow to the select box */
+            .register-page-gender::after 
+            {
+                content: '▼'; /* Unicode character for down arrow */
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none; /* Ensures arrow does not intercept clicks */
+            }
+
+            /* Container for custom select box styling */
+            .select-container 
+            {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Style for the option elements */
+            .register-page-gender option 
+            {
+                background-color: #005A9C; /* Background color of options */
+                color: white; /* Text color */
+            }
+
+            /* Style for the dropdown list (only for Firefox) */
+            @-moz-document url-prefix() 
+            {
+                .register-page-gender option 
+                {
+                    background-color: #005A9C;
+                    color: white;
+                }
+            }
+
+            .logo-role-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: space-between;
+            }
+            #passwordMatch 
+            {
+                margin:15px 0px 0px -70px;
+                font-weight: bold;
+                font-size: 19px;
+            }
+            .register-page-successful-msg
+            {
+                font-size:20px;
+                color:black;
+                margin:0px 0px 10px 0px;
+            }
+
+            .password-container 
+            {
+                position: relative;
+            }
+            .password-container .toggle-password 
+            {
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                margin-left: -30px;
+            }
+            /*.register-page-img 
+            {
+                height:70%;
+                width:30%;
+                border-radius: 20px;
+            }*/
+            .register-page-user-mail-input::placeholder 
+            {
+                color: #ccc; /* Change this to the color you want for the placeholder */
+                opacity: 1; /* For older browsers, this ensures the color is applied */
+            }
+
+            .register-page-user-mail-input:-ms-input-placeholder 
+            { /* Internet Explorer 10-11 */
+                color: #ccc;
+            }
+
+            .register-page-user-mail-input::-ms-input-placeholder 
+            { /* Microsoft Edge */
+                color: #ccc;
+            }
+
+        </style>
+        
+    </head>
+    <body>
+        <div class = "register-page-container" >
+            
+                <!--<div class="logo-role-bar">-->
+                   <div class = "landing-page-logo-bar">
+                        <img src = "{% static 'LogoDL (2).png' %}" class = "landing-page-logo">
+                        <h2>DonateLife</h2>
+                    </div>
+                <!--</div>-->
+                
+                <form class = "register-page-user-container" id="registerForm" method="post">
+                    {% csrf_token %}
+                    <div class = "register-page-user-sub-container">
+                        <div style = "margin-right:40px;">
+                            <input type = "text" placeholder="First Name" class = "register-page-user-mail-input" id = "firstName" name = "firstName"><br>
+                            <input type = "text"  placeholder="Last Name" class = "register-page-user-mail-input" id = "lastName" name = "lastName"><br>
+                            <input type ="number" placeholder="Phone number"  class = "register-page-user-mail-input" id = "phNum" name="phNum"><br>
+                            <input type = "date" required  class = "register-page-user-mail-input" id = "dob" name="dob">
+                            <h3 style = "margin:20px 0px 20px 10px">Gender
+                            <span>
+                                <select class = "register-page-gender" required id = "gender" name="gender">
+                                    <option class = "option">Female</option>
+                                    <option class = "option">Male</option>
+                                    <option class = "option">Other</option>
+                                </select> 
+                            </span>
+                            </h3>
+                            
+                        </div>
+                        <div>
+                            <input type ="email" placeholder="Email Id" required class = "register-page-user-mail-input" id = "mailId" name="mailId">
+                            <input type = "text" placeholder="Country" required class = "register-page-user-mail-input" id = "country" name = "country">
+                            <input type = "text" placeholder="Address" required class = "register-page-user-mail-input" id = "address" name = "address">
+                            <div class="password-container">
+                                <input type="password" placeholder="Create Password" id="registerInputUser" name="registerInputUser" class="register-page-user-mail-input">
+                                <i class="fa fa-eye toggle-password" id="toggleRegisterPassword"></i>
+                            </div>
+                            <br>
+                            <div class="password-container">
+                                <input type="password" placeholder="Confirm Password" required name="registerInputUserRecheck" id="registerInputUserRecheck" class="register-page-user-mail-input">
+                                <i class="fa fa-eye toggle-password" id="toggleRegisterPasswordRecheck"></i>
+                            </div>
+                            <p id = "passwordMatch"></p>
+                        </div>
+                    </div>
+                    <button onclick= "registerButton() " id = "registerBtn" type="submit">
+                        Register
+                    </button>
+                    {% if messages %}
+                    <div>
+                        {% for message in messages %}
+                            {% if "register" in message.tags %}
+                                <p style="color: red;margin:0px 0px 30px -60px;">{{ message }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                </div>
+                <p class = "register-page-successful-msg" id = "regPageSuccessMsg"></p>
+                <p style = "margin-left:450px;margin-top:-80px;">Already have an account?  
+                    <a href = "{% url 'login_view' %}" style = "color:white;text-decoration: none;"> Login</a>  here
+                </p>
+                <p style = "margin-left:450px;margin-top:0px;">
+                    If you are a Developer,
+                    <a href = "{% url 'register_admin' %}" style = "color:white;text-decoration: none;">Click</a> 
+                    here to register
+                </p>
+           <!--- <img src = "Sign up.gif" class = "register-page-img"> -->
+        </form>
+    </div>
+        <script src = "{% static 'register_user.js' %}"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receiver Details</title>
+    <style>
+        body {
+            font-family: "IBM Plex Serif", serif;
+            background-image: linear-gradient(45deg, black, transparent);
+            padding: 10px;
+            color: white;
+            height:500px;
+        }
+        .form-container {
+            background-image:linear-gradient(60deg,#005A9C,black); 
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin:70px 0px 0px 500px;
+            padding:10px 10px 20px 50px;
+        }
+        .form-container input {
+            display: block;
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .form-container button {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            width: 77%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Receiver Details</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="receiver_name" placeholder="Receiver Name" required>
+            <input type="text" name="receiver_contact" placeholder="Receiver Contact" required>
+            <input type="text" name="receiver_location" placeholder="Receiver Location" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

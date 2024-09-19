@@ -1,0 +1,471 @@
+<html>
+    <head>
+        {% load static %}
+
+        <style>
+            .landing-page-container
+            {
+                font-family: "IBM Plex Serif", serif;
+                background-image: linear-gradient(45deg, black, transparent);
+            }
+            nav 
+            {
+                display: flex;
+                align-items: row;
+                justify-content:space-evenly;
+            }
+            .landing-page-nav-bar
+            {
+                display:flex;
+                align-items: row;
+                justify-content: right;
+                margin:5px 5px 5px 10px;
+                padding:10px 5px 5px 10px;
+            }
+            .landing-page-nav-bar  li 
+            {
+                padding:10px 5px 5px 10px;
+            }
+            .landing-page-nav-bar a 
+            {
+                text-decoration:none;
+                color:black;
+                font-size:20px;
+                padding:15px;
+            }
+            .landing-page-nav-bar a :hover 
+            {
+                text-decoration:underline;
+            }
+            .landing-page-nav-bar-buttons a
+            {
+                border:solid #005A9C 2px ;
+                color:black;
+                margin-right:20px;
+                width:20px;
+                font-size: 20px;
+                border-radius: 10px;
+
+            }
+            .landing-page-nav-bar-buttons a:hover 
+            {
+                background-image:linear-gradient(60deg,#005A9C,black); 
+                color:white;
+            }
+            .landing-page-logo-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin:10px 150px 0px -70px;
+                font-size: 15px;
+            }
+            .landing-page-logo 
+            {
+                height:50px;
+                width:50px;
+                border-radius: 20px;
+                margin:0px 10px 0px 30px;
+            }
+            .landing-page-intro-section 
+            {
+                text-align: center;
+                padding:20px 20px 20px 90px;
+                background-image:linear-gradient(60deg,#005A9C,black);
+                color:white;
+            }
+            .landing-page-intro-section h1 
+            {
+                font-size: 30px;
+            }
+            .landing-page-intro-section p 
+            {
+                font-size: 20px;
+            }
+            .landing-page-register-btn 
+            {
+                height:55px;
+                width:120px;
+                margin:15px;
+                background-image: linear-gradient(50deg, black, transparent);
+                border:solid 2px black;
+                border-radius: 10pc;
+                font-size:15px;
+                font-weight:500;
+                font-family: "IBM Plex Serif", serif;
+                font-size: 20px;
+
+            }
+            .landing-page-register-btn a 
+            {
+                color:black;
+                font-weight: 600;
+            }
+            .landing-page-home-section
+            {
+                display:flex;
+                align-items: row;
+                justify-content: space-evenly;
+                font-size: 20px;
+                margin:20px;
+            }
+            .landing-page-home-gif 
+            {
+                height:350px;
+                margin-top:20px;
+                border-radius: 40px;
+            }
+            .landing-page-about-img 
+            {
+                height:350px;
+                width:350px;
+                margin-top:-10px;
+                border-radius: 40px;
+
+            }
+            .landing-page-service-section 
+            {
+                display:flex;
+                align-items:row;
+                justify-content: space-evenly;
+                font-size: 20px;
+            }
+            .landing-page-contact-us-section 
+            {
+                height:auto;
+                padding:10px;
+                background-color:#005A9C ;
+                color:white;
+            }
+            .landing-page-contact-logo
+            {
+                margin-left:10px;
+                
+            }
+            .landing-page-contact-section
+            {
+                display:flex;
+                background-image:linear-gradient(60deg,#005A9C,black);
+                align-items:row;
+                justify-content: space-between;
+                margin:0px 10px 0px 10px;
+                padding:17px;
+                color:white;
+                
+            }
+            .landing-page-contact-section-logo 
+            {
+                display: flex;
+                align-items: column;
+                justify-content:space-evenly;
+                margin-top:9px;
+                width:300px;
+            }
+            .landing-page-contact-details
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin-bottom: 10px;
+            }
+            .landing-page-contact-details p 
+            {
+                margin:-2px 0px 2px 10px ;
+            }
+            .landing-page-copyrights 
+            {
+                text-align: center;
+                padding-bottom:20px;
+            }
+            
+            .faq
+            {
+                padding:10px 12%;
+                text-align:center;
+                font-size:18px;
+            }
+            .faq h2
+            {
+                font-weight:bold;
+                font-size: 40px;
+                margin-left: 120px;
+            }
+            .accordion
+            {
+                margin:60px auto;
+                width:100%;
+                max-width:750px;
+            }
+            .accordion li 
+            {
+                list-style:none;
+                width:100%;
+                padding:5px;
+            }
+            .accordion li label
+            {
+                display:flex;
+                align-items:center;
+                padding:20px;
+                font-size:18px;
+                font-weight:500;
+                background-image:linear-gradient(60deg,#005A9C,black);                
+                margin-bottom:2px;
+                cursor:pointer;
+                position:relative;
+                color:white;
+            }
+            label::after
+            {
+                content: '+';
+                font-size: 34px;
+                position:absolute;
+                right:20px;
+                transition: transform 0.5s;
+            }
+            input[type="radio"]
+            {
+                display:none;
+            }
+            .accordion .content 
+            {
+                background-image:linear-gradient(60deg,#005A9C,black);                
+                color:white;
+                text-align:left;
+                padding: 0 20px;
+                max-height:0;
+                overflow:hidden;
+                transition: max-height 0.5s,padding 0.5s;
+            }
+            .accordion input[type="radio"]:checked + label + .content
+            {
+                max-height:600px;
+                padding:30px 20px;
+            }
+            .accordion input[type="radio"]:checked + label::after
+            {
+                transform:rotate(135deg);
+            }
+            .faq .email-signin
+            {
+                max-width:600px;
+                margin:20px auto 60px;
+            }
+            .faq small
+            {
+             font-size:13px;
+            }
+            #contactUs 
+            {
+                background-image: linear-gradient(60deg,#005A9C,black);
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="landing-page-container" method = "POST">
+            {% csrf_token %}
+            <nav>
+                <ul type = "none" class = "landing-page-logo-bar">
+                    <li><img src = "{% static 'LogoDL (2).png' %}" class = "landing-page-logo"></li>
+                    <li><h2>DonateLife</h2></li>
+               
+                </ul>
+                <ul type = "none" class = "landing-page-nav-bar">
+                    <li><a href = "#home">Home</a></li>
+                    <li><a href = "#aboutUs">About Us</a></li>
+                    <li><a href = "#services">Services</a></li>
+                    <li><a href = "#faqs">FAQs</a></li>
+                    <li><a href = "#contactUs">Contact Us</a></li>
+                </ul>
+                <ul type = "none" class = "landing-page-nav-bar">
+                    <li class = "landing-page-nav-bar-buttons"><a href = "{% url 'login_view' %}">Login</a></li>
+                    <li class = "landing-page-nav-bar-buttons"><a href = "{% url 'register_user' %}">Register</a></li>
+               
+                </ul>
+            
+            </nav>
+            <div class="landing-page-intro-section">
+                <h1>Organ Donation Management System</h1>
+                <p>
+                    we are committed to saving lives through the power <br>
+                    of organ donation and transplantation. Our platform <br>
+                    connects donors with recipients in need of life-saving <br>
+                    organs, streamlining the donation process and ensuring <br>
+                    that every opportunity for transplantation is maximized.<br>
+                    <br>
+                    Dont have any account? Register Now <br>
+                    <button class = "landing-page-register-btn"><a href = "{% url 'register_user' %}" style = "text-decoration: none;">Register</a></button>
+                </p>
+            </div>
+        
+            <div class="landing-page-home-section" id = "home">
+                <div>
+                    <h1>Home</h1>
+                    <h3>Why Choose ODMS?</h3>
+                    <ul>
+                        <li>Life-Saving Impact</li>
+                        <li>Efficiency and Accessibility</li>
+                        <li>Advanced Matching Algorithm </li>
+                    </ul>
+                    <h3>Join Us Today and Make a Difference!</h3>
+                    <p>Register as a recipient on ODMS and become <br>
+                        a part of our life-saving community. Together,<br>
+                        we can give the gift of life and make a positive<br> 
+                        impact on the lives of individuals in need.</p>
+                </div>
+                <img src = "{% static 'Doctors.gif' %}" class = "landing-page-home-gif">
+            </div>
+            <br>
+
+            <div class=" landing-page-home-section" id = "aboutUs">
+                <img src = "{% static 'Operating system upgrade.gif' %}" class = "landing-page-about-img">
+                <div>
+                    <h1>About Us</h1>
+                    <p>Comprised of a dedicated team from diverse<br>
+                        backgrounds in healthcare, technology, and <br>
+                        nonprofit management, we hold steadfast beliefs<br>
+                        in compassion, innovation, and collaboration.<br>
+                        Our achievements include facilitating numerous<br>
+                        successful organ transplants, making a profound<br>
+                        impact on the lives of individuals awaiting life-saving <br>
+                        procedures. 
+                    </p>
+                </div>   
+            </div>
+
+            <div class="landing-page-service-section" id = "services">
+                <div>
+                    <h1>Services</h1>
+                    <p>
+                        We offers a comprehensive suite of solutions for<br>
+                        organ donation and transplantation. From streamlined<br>
+                        donor registration to advanced recipient matching,<br>
+                        we prioritize efficiency and fairness. We support<br>
+                        living donors and provide educational resources, <br>
+                        ensuring informed decisions. Post-transplant follow-up<br>
+                        care ensures ongoing well-being. Through these services,<br>
+                        we aim to make a meaningful impact in saving lives and <br>
+                        fostering awareness for organ donation.
+                    </p>
+                </div>
+                <img src = "{% static 'Humanitarian Help.gif' %}" class = "landing-page-about-img">
+            </div>
+
+            <!-----------------------FAQ SEction------------------------------------->
+            
+            <div class="faq" id = "faqs">
+                <h2>Frequently Asked Questions</h2>
+                <ul class="accordion">
+                    <li>
+                        <input type="radio" name="accordion" id = "first">
+                        <label for="first">What is an organ donation management system (ODMS)?</label>
+                        <div class="content">
+                            <p>An organ donation management system is a software platform 
+                                designed to facilitate the process of organ donation, 
+                                from registration to allocation and transplantation. 
+                                It streamlines the coordination among donors, recipients,
+                                 transplant centers, and organ procurement organizations.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordion" id = "second">
+                        <label for="second">How does an ODMS work?
+        
+                        </label>
+                        <div class="content">
+                            <p>An ODMS typically includes modules for Recipient registration,
+                                communication between transplant centers and organ procurement 
+                                organizations,and tracking of transplantation surgeries.
+                                It ensures efficient allocation of organs
+                                based on geographic location.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordion" id = "third">
+                        <label for="third">What are the benefits of using an ODMS?</label>
+                        <div class="content">
+                            <p>Enhanced communication and coordination among involved parties, reducing errors and delays.
+                            Comprehensive tracking of organ procurement and transplantation processes, ensuring compliance with regulations and protocols.</p>
+        
+                            <p>Increased transparency and accountability in the organ donation process.
+                            Enhanced data management capabilities for research and analysis to improve overall transplantation outcomes.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <input type="radio" name="accordion" id = "fourth">
+                        <label for="fourth">Is an ODMS secure and compliant with privacy regulations?</label>
+                        <div class="content">
+                            <p>Yes, reputable ODMS platforms adhere to strict security standards 
+                                and comply with relevant privacy regulations such as 
+                                HIPAA (in the United States) or GDPR (in the European Union). 
+                                They employ encryption, access controls, and audit trails to
+                                 protect sensitive donor and recipient information.</p>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <input type="radio" name="accordion" id = "sixth">
+                        <label for="sixth">How does an ODMS handle deceased donor and living donor organ transplantation?</label>
+                        <div class="content">
+                            <p>An ODMS manages both deceased donor and living donor organ 
+                                transplantation processes. For deceased donors, 
+                                it facilitates organ allocation based on medical urgency, 
+                                compatibility, and other relevant factors. For living donors, 
+                                it assists in donor evaluation, surgery scheduling, and follow-up care.</p>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-------------------------------------------------------------------------->
+            <div style = "color:white;" id = "contactUs">
+                <div class="landing-page-contact-section">
+                    <div>
+                        <ul type = "none" class = "landing-page-logo-bar landing-page-contact-logo" style = "margin-left:-30px;">
+                            <li><img src = "{% static 'LogoDL (2).png' %}" class = "landing-page-logo" style = "height:30px;width:30px;margin:17px 8px 0px 30px;"></li>
+                            <li><h2>DonateLife</h2></li>
+                        </ul>
+                        <div class = "landing-page-contact-section-logo">
+                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                            <i class="fa fa-telegram" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    
+                    <div style = "color:white;margin-left:-190px;">
+                        <ul type = "none">
+                            <li><a href = "#" style = "color:white;text-decoration: none;">Privacy Policy</a></li>
+                            <li><a href = "#" style = "color:white;text-decoration: none;">Terms and Conditions</a></li>
+                            <li><a href = "#" style = "color:white;text-decoration: none;">About Us</a></li>
+                            <li><a href = "#" style = "color:white;text-decoration: none;">FAQ</a></li>
+                        </ul>
+                    
+                        
+                    </div>
+                    <div style = "color:white;margin:10px 40px 0px 0px;">
+                        <div class = "landing-page-contact-details">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            <p>+91 8725346298</p>
+                        </div>
+                        <div class = "landing-page-contact-details">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <p>doctorlife@gmail.com</p>
+                        </div>
+                        <div class = "landing-page-contact-details">
+                            <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                            <p>Bangalore</p>
+                        </div>
+                    </div>       
+                    
+                </div>
+                <p class = "landing-page-copyrights"><span><i class="fa fa-copyright" aria-hidden="true"></i></span>
+                     2024 Organ Donation Management System
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

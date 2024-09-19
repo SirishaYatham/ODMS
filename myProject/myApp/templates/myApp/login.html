@@ -1,0 +1,239 @@
+<html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            .login-page-main-container
+            {
+                background-image: linear-gradient(60deg, black, transparent);
+                height:100%;
+                margin:0px 0px 0px 0px;
+                padding:10px;
+            }
+            .login-page-container 
+            {
+                display:flex;
+                align-items: row;
+                justify-content: space-evenly;
+            }
+            .login-page-logo-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin:10px 150px 10px 0px;
+                font-size: 19px;
+            }
+            .login-page-logo-bar h2 
+            {
+                color:white;
+                margin:20px 0px 10px 10px;
+            }
+            .login-page-logo 
+            {
+                height:50px;
+                width:50px;
+                border-radius: 20px;
+                margin:10px 10px 0px 30px;
+            }
+            .login-page-user-container
+            {
+                background-image:linear-gradient(60deg,#005A9C,black); 
+                height:300px;
+                width:50%;
+                color:white;
+                border-radius: 20px;
+                text-align: center;
+                margin:40px 100px 0px 100px;
+                padding:18px;
+                border:solid black 2px;
+                
+            }
+            .login-page-admin-container
+            {
+                background-image:linear-gradient(60deg,#005A9C,black); 
+                height:300px;
+                width:50%;
+                color:white;
+                border-radius: 20px;
+                text-align: center;
+                margin:40px 100px 0px 100px;
+                padding:18px;
+                border:solid black 2px;
+            }
+            .login-page-admin-container h3 
+            {
+                margin:0px 0px 10px -80px;
+            }
+            .login-page-admin-container h2 
+            {
+                margin-left:-60px;
+            }
+            .login-page-admin-container a 
+            {
+                color:white;
+                text-decoration: none;
+                margin:-30px 10px 10px 50px ;
+            }
+            .login-page-admin-container button 
+            {
+                height:40px;
+                width:100px;
+                color:black;
+                border-color:black;
+                margin:30px 30px 20px -40px;
+                border-radius: 10px;
+            }
+            .login-page-admin-container button:hover
+            {
+                color:white;
+                border-color:white;
+                background-image: linear-gradient(50deg, black, transparent);
+            }
+
+
+            .login-page-main-container h1 
+            {
+                margin:25px 0px 5px 100px;
+                color:white;
+            }
+            .login-page-user-container h3 
+            {
+                margin:0px 0px 10px -80px;
+            }
+            .login-page-user-container h2 
+            {
+                margin-left:-60px;
+            }
+            .login-page-user-container a 
+            {
+                color:white;
+                text-decoration: none;
+                margin:-30px 10px 10px 50px ;
+            }
+            .login-page-user-container button 
+            {
+                height:40px;
+                width:100px;
+                color:black;
+                border-color:black;
+                margin:30px 30px 20px -40px;
+                border-radius: 10px;
+            }
+            .login-page-user-container button:hover
+            {
+                color:white;
+                border-color:white;
+                background-image: linear-gradient(50deg, black, transparent);
+            }
+            .login-page-user-mail-input 
+            {
+                height:40px;
+                width:300px;
+                font-size: 15px;
+                color:white;
+                padding:2px 2px 2px 2px;
+                background-color:transparent;
+                border:solid white 2px;
+                border-radius:10px;
+                margin-bottom: 10px;
+            }
+            .login-show-password 
+            {
+                margin:10px 10px 10px -50px;
+            }
+            .new-signup-login-page 
+            {
+                color:white;
+                margin:20px 0px 10px 200px;
+                font-size: 19px;
+            }
+            .new-signup-login-page a
+            {
+                text-decoration: none;
+                color:black;
+            }
+            .user-error-message 
+            {
+                color: red;
+                margin:-15px 0px 0px -15px;
+            }
+            .admin-error-message 
+            {
+            color: red;
+            margin:-15px 0px 0px -15px;
+            }
+            .password-container 
+            {
+                position: relative;
+            }
+            .password-container .toggle-password 
+            {
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                margin-left: 230px;
+                margin-top: -30px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="login-page-main-container">
+            <div class="login-page-logo-bar">
+                <img src="{% static 'LogoDL (2).png' %}" class="login-page-logo" alt="Logo">
+                <h2>DonateLife</h2>
+            </div>
+            <h1>Welcome to DonateLife</h1>
+            <div class="login-page-container">
+                <div class="login-page-user-container">  
+                    <h2>For Users</h2>
+                    <form id="userLoginForm" method="POST" data-action="{% url 'login_view' %}" data-user-home="{% url 'user_home' %}">
+                        {% csrf_token %}
+                        <input type="email" name="email" id="user-email" class="login-page-user-mail-input" placeholder="Enter your email" title="Email">
+                        <div class="password-container">
+                            <input type="password" placeholder="Create Password" id="registerInputUser" name="password" class="login-page-user-mail-input">
+                            <i class="fa fa-eye toggle-password" id="toggleRegisterUserPassword"></i>
+                        </div>                         <br>
+                        <input type="hidden" name="loginType" value="user">
+                        <a href="#">forgot password?</a>
+                        <br>
+                        <button type="submit" value="Login" name="userSubmit">Log In</button>
+                                       
+                    </form>
+                    <div id="userErrorContainer" class="user-error-message"></div>
+
+                </div>
+                <hr>
+                <div class="login-page-admin-container">
+                    <h2>For Developers</h2>
+                    <form id="adminLoginForm" method="POST" data-action="{% url 'login_view' %}" data-landing-page="{% url 'landing_page' %}">
+                        {% csrf_token %}
+                        <input type="email" name="email" id="admin-email" class="login-page-user-mail-input" placeholder="Enter your email" title="Email">
+                        <div class="password-container">
+                            <input type="password" placeholder="Create Password" id="registerInputAdmin" name="password" class="login-page-user-mail-input">
+                            <i class="fa fa-eye toggle-password" id="toggleRegisterAdminPassword"></i>
+                        </div>                        
+                        <br>
+                        <a href="#">forgot password?</a>
+                        <br>
+                        <input type="hidden" name="loginType" value="admin">
+                        <button type="submit" value="Login" name="adminSubmit">Log In</button>
+                    
+                    </form>
+                    <div id="adminErrorContainer" class="admin-error-message"></div>
+                </div>
+            </div>
+            <p class="new-signup-login-page">Don't have an account? <a href="{% url 'register_user' %}">Sign up now</a></p>
+        </div>
+        <script src="{% static 'login.js' %}"></script>
+    </body>
+</html>

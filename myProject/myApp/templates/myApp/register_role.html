@@ -1,0 +1,69 @@
+<html>
+    <head>
+        {% load static %}
+
+        <style>
+            .reg-role-container 
+            {
+                display:flex;
+                align-items: row;
+                justify-content:space-evenly;
+                background-color:  #005A9C;
+                font-family: "IBM Plex Serif", serif;
+                height:90%;
+                text-align: center;
+            }
+            a 
+            {
+                color:white;
+                text-decoration: none;
+            }
+            p
+            {
+                margin:200px 20px 10px 200px;
+                font-size:20px;
+            }
+            img 
+            {
+                height:300px;
+                width:300px;
+                margin:100px 30px 20px 20px;
+                border-radius:20px;
+            }
+            .landing-page-logo-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin:-20px 0px 0px 10px;
+                font-size: 19px;
+            }
+            .landing-page-logo-bar h2 
+            {
+                color:black;
+                margin:30px 0px 10px 5px;
+            }
+            .landing-page-logo 
+            {
+                height:50px;
+                width:50px;
+                border-radius: 20px;
+                margin:20px 10px 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "landing-page-logo-bar">
+            <img src = "{% static 'LogoDL (2).png' %}" class = "landing-page-logo">
+            <h2>DonateLife</h2>
+        </div>
+        <div class = "reg-role-container">
+            <div>
+                <p>Are you a User, Then <a href = "{% url 'register_user' %}">Click Here</a><br><br>
+               Or if you are an Admin, Then <a href = "{% url 'register_admin' %}">Click Here</a></p>
+            </div>
+            <img src = "{% static 'Humanitarian Help2.gif' %}">
+        </div>
+        
+    </body>
+</html>

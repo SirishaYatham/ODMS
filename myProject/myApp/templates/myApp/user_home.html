@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Organ Donor Search</title>
+        <style>
+            body 
+            {
+                background-image: linear-gradient(45deg, black, transparent);
+                font-family: "IBM Plex Serif", serif;
+                margin: 0;
+                padding: 20px;
+                color:white;
+                height:100%;
+            }
+            .home-header-container 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: space-between;
+            }
+            .logo-role-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: space-between;
+            }
+            .landing-page-logo-bar 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: left;
+                margin:0px 0px 0px 10px;
+                font-size: 19px;
+            }
+            .landing-page-logo-bar h2 
+            {
+                color:black;
+                margin:10px 0px 10px 7px;
+               
+            }
+            .landing-page-logo 
+            {
+                height:50px;
+                width:50px;
+                border-radius: 20px;
+                margin:0px 10px 30px 30px;
+            }
+            .home-profile 
+            {
+                color:black;
+                display: flex;
+                align-items: row;
+                width:350px;
+            }
+            .home-profile a
+            {
+                text-decoration: none;
+
+            }
+            .home-profile p 
+            {
+                font-size: 17px;
+                margin:18px 10px 10px 10px;
+            }
+            .home-profile .sign-out-icon 
+            {
+                font-size:20px;
+                margin-left:10px;
+            }
+            .home-container 
+            {
+                padding:20px 20px 100px 200px;
+                height: auto;
+               margin:-40px 0px 0px 0px;
+            }
+            .home-sub-container 
+            {
+                display: flex;
+                align-items: row;
+                justify-content: space-between;
+            }
+
+            .home-sub-container input[type="text"] 
+            {
+                padding: 15px;
+                width: 200px;
+                margin:20px 10px 20px 10px;
+                font-size:20px;
+                border-radius: 40px;
+            }
+            
+            button 
+            {
+                padding: 15px;
+                background-image:linear-gradient(60deg,#005A9C,black); 
+                color: #fff;
+                border: none;
+                font-size:20px;
+                width:100px;
+                cursor: pointer;
+                border-radius:20px;
+            }
+
+            button:hover 
+            {
+                background-color: #0056b3;
+            }
+            #donor-list 
+            {
+                margin:10px 20px 7px 10px;
+                font-size:20px;
+                padding:0px;
+                border-radius: 20px;                              
+            }
+            .home-gif 
+            {
+                margin:100px 80px 20px 70px;
+                border-radius: 10px;
+                height:300px;
+                width:300px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="home-header-container">
+            <div class="logo-role-bar">
+                <div class = "landing-page-logo-bar">
+                    <img src = "{% static 'LogoDL (2).png' %}" class = "landing-page-logo">
+                    <h2>DonateLife</h2>
+                </div>
+            </div>
+            <div class="home-profile">
+                <p style = "font-weight: bold;">Welcome, {{ username }}</p>
+                <a href = "{% url 'logout_view' %}"><p>Log Out<span><i class="fa fa-sign-out sign-out-icon" aria-hidden="true"></i></span></p></a>
+            </div>
+        </div>
+        
+        <div class = "home-container">
+            <h1>Welcome to DonateLife</h1>
+            <h2>Choose What you want</h2>
+            <div class = "home-sub-container">
+                <div>
+                    <input type="text" id="organInput" placeholder="Enter Organ Name">
+                    <button onclick = "searchOrgan()">Search</button>
+                    <!--<p>do you want to donate? <a href = "new_donate_page.html">Click here </a></p>-->
+                    <div id="donor-list"></div>
+                </div>
+                <div>
+                    <img src = "{% static 'Humanitarian Help2.gif' %}" class = "home-gif">
+                </div>    
+            </div>
+            
+        </div>
+        
+    <script src="{% static 'user_home.js' %}"></script>
+    </body>
+</html>
